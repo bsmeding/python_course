@@ -14,8 +14,8 @@ def main():
     Main application
     """
     # Set filenames
-    list_to_yaml = "my_info.yaml"
-    list_to_json = "my_info.json"
+    list_to_yaml = "output_my_info.yaml"
+    list_to_json = "output_my_info.json"
 
 
 
