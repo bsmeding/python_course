@@ -25,14 +25,16 @@ def main():
     #Loop crypto parents
     for obj in crypto_parents:
       print ""
-      print "Crypto map parent: ", obj.text
+      #print "Crypto map parent: ", obj.text
+      print ""
+      print obj.text
 
-      # Get all children
-      crypto_child = parse.find_all_children(obj.text)
-      #print children
-      print crypto_child
-      #for child in crypto_child:
-      #  print child.text
+      ### Get all children
+      #crypto_child = parse.find_all_children(obj.text)
+      #print crypto_child
+      
+      for child in obj.children:
+        print child.text
 
 
 
