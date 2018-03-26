@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """
-Python script to  read two files, one YAML and one JSON file and print content
+Write a Python program using ciscoconfparse that parses this config file. 
+Note, this config file is not fully valid (i.e. parts of the configuration are missing). 
+The script should find all of the crypto map entries in the file (lines that begin with 'crypto map CRYPTO') and for each crypto map entry print out its children.
 
 """
-import json
-import yaml
+from ciscoconfparse import CiscoConfParse
 import pprint
 
 
@@ -15,27 +16,24 @@ def main():
     Main application
     """
     # Set filenames
-    list_to_yaml = "output_my_info.yaml"
-    list_to_json = "output_my_info.json"
+    config_file = "pynet-rtr1.conf"
 
+    # Parse config file
+    parse = CiscoConfParse(config_file)
+    crypto_parents = parse.find_objects(r"^crypto map CRYPTO")
 
-    # Open YAML
-    with open(list_to_yaml) as yf:
-      list_1 = yaml.load(yf)
+    #Loop crypto parents
+    for obj in crypto_parents:
+      print ""
+      print "Crypto map parent: ", obj.text
 
-    # Open JSON
-    with open(list_to_json) as jf:
-      list_2 = json.load(jf)
+      # Get all children
+      crypto_child = parse.find_all_children(obj.text)
+      #print children
+      print crypto_child
+      #for child in crypto_child:
+      #  print child.text
 
-    # Print to screen
-    print ""
-    print "My YAML list:\n"
-    print ""
-    pprint.pprint(list_1)
-    print ""
-    print "My JSON list:\n"
-    print ""
-    pprint.pprint(list_2)
 
 
 # Start script
