@@ -39,7 +39,7 @@ def main():
 
 	# Sent Commands to router
 	output = send_command(remote_conn, "terminal length 0")
-	output = send_command(remote_conn, "show version")
+	output = send_command(remote_conn, "show ip int brief")
 	print output
 
 
